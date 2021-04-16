@@ -19,6 +19,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
 
   currencyFrom = new FormControl();
   currencyTo = new FormControl();
+  inputControl = new FormControl();
 
   constructor(private ratesService: RatesService) {}
 
@@ -47,6 +48,14 @@ export class ExchangeComponent implements OnInit, OnDestroy {
         this.date = date;
         this.currencies = currencies;
       });
+  }
+
+  convert(): void {
+    const currency1 = this.currencyFrom.value;
+    const currency2 = this.currencyTo.value;
+
+    console.log(currency1);
+    console.log(currency2);
   }
 
   ngOnDestroy(): void {

@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     height: 80px;
+    font-size: 20px;
     button {
       width: 60px;
       height: 60px;
@@ -25,22 +26,33 @@
     }
   }
   .info {
-    display: block;
-    height: 150px;
-    margin: 50px auto;
+    display: flex;
+    height: 100px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #3f3f3f;
+    justify-content: space-between;
+    border: 1.5px solid #3f3f3f;
     border-radius: 4px;
-    color: #d8d8d8;
     .values {
       display: flex;
-      justify-content: flex-end;
       align-items: center;
-      height: 45%;
-      font-size: 24px;
+      height: 100%;
+      width: 100%;
+      font-size: 22px;
+      margin-right: 5px;
+      color: #757575;
+    }
+    .inputCurrency {
+      font-size: 22px;
+      color: #757575;
+      line-height: 2.5;
+    }
+    .justifyToEnd {
+      justify-content: flex-end;
     }
     .divider {
-      height: 1px;
+      height: 100%;
+      margin: 0 10px;
       border: 1px solid #fea832;
     }
   }

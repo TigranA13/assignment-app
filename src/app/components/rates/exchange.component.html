@@ -45,7 +45,7 @@
           <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-mini-fab aria-label="Example icon button with a menu icon">
+      <button mat-mini-fab (click)="convert()">
         <mat-icon>change_circle</mat-icon>
       </button>
       <mat-form-field>
@@ -59,9 +59,13 @@
       </mat-form-field>
     </div>
     <div class="info">
-      <div class="values">100</div>
-      <div class="divider"></div>
-      <div class="values">100</div>
+        <mat-form-field class="example-full-width values">
+          <input matInput placeholder="Enter amount" [formControl]="inputControl">
+        </mat-form-field>
+        <span class="inputCurrency">{{currencyFrom.value}}</span>
+        <div class="divider"></div>
+        <span class="values justifyToEnd">1000</span>
+      <span class="inputCurrency">{{currencyTo.value}}</span>
     </div>
   </div>
 </div>

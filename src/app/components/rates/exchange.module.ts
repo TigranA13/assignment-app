@@ -9,6 +9,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatSelectModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule
   ]
 })
 export class ExchangeModule { }
