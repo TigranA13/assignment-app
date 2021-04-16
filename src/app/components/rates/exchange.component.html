@@ -1,0 +1,68 @@
+
+<div class="grid">
+  <div class="ratesWrapper">
+    <div class="contentHeader">
+     <span>Rates</span>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- # Column -->
+        <ng-container matColumnDef="#">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}}. </td>
+        </ng-container>
+
+        <!-- Currency Column -->
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef> Currency </th>
+          <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+        </ng-container>
+
+        <!-- Rate Column -->
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef> Rate </th>
+          <td mat-cell *matCellDef="let element"> {{element.value | number:'0.2-4'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <div class="noData" *ngIf="!dataSource.length">
+        No Data
+      </div>
+    </div>
+  </div>
+  <div class="exchangeWrapper">
+    <div class="exchangeSelect">
+      <mat-form-field>
+        <mat-label>From</mat-label>
+        <mat-select [formControl]="currencyFrom">
+          <mat-select-trigger>
+            {{currencyFrom.value}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-mini-fab aria-label="Example icon button with a menu icon">
+        <mat-icon>change_circle</mat-icon>
+      </button>
+      <mat-form-field>
+        <mat-label>To</mat-label>
+        <mat-select [formControl]="currencyTo">
+          <mat-select-trigger>
+            {{currencyTo.value}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="info">
+      <div class="values">100</div>
+      <div class="divider"></div>
+      <div class="values">100</div>
+    </div>
+  </div>
+</div>
+

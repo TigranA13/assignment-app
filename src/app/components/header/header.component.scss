@@ -1,0 +1,20 @@
+.mat-toolbar {
+  display: grid;
+  grid-template-columns: calc(50% + 25px) auto;
+  justify-items: end;
+  background-color: rgba(53, 53, 53, 0.95);
+  .brand {
+    width: 50px;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  button {
+    .mat-icon {
+      color: #fea832;
+    }
+  }
+}
+
+
