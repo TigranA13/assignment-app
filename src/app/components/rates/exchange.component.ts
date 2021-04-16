@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
+import { FormControl, Validators } from '@angular/forms';
 
-import { map } from "rxjs/operators";
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { RatesService } from "../../services/rates.service";
+import { RatesService } from '../../services/rates.service';
 
 @Component({
   selector: 'app-exchange',
@@ -11,35 +12,47 @@ import { RatesService } from "../../services/rates.service";
   styleUrls: ['./exchange.component.scss']
 })
 export class ExchangeComponent implements OnInit, OnDestroy {
+  loader = false;
   displayedColumns = ['#', 'currency', 'rate'];
   dataSource = [];
   currencies = [];
   base = '';
   date = '';
 
-  currencyFrom = new FormControl();
-  currencyTo = new FormControl();
-  inputControl = new FormControl();
+  currencyFrom = 'EUR';
+  currencyTo = new FormControl('USD');
+  inputControl = new FormControl('', Validators.compose([
+    Validators.required,
+    Validators.pattern('^[0-9]*$'),
+    Validators.min(0),
+  ]));
+  exchangeValue = 0;
 
-  constructor(private ratesService: RatesService) {}
+  private subscription: Subscription;
+
+  constructor(private ratesService: RatesService) {
+    this.subscription = this.currencyTo.valueChanges
+      .subscribe(val => {
+        this.exchangeValue = 0;
+      });
+  }
 
   ngOnInit(): void {
-    this.currencyFrom.setValue('USD');
-    this.currencyTo.setValue('EUR');
     this.getCurrencies();
   }
 
   getCurrencies(): void {
+    this.loader = true;
     this.ratesService.getRates()
       .pipe(
-        map(({ base, rates, date })=> {
+        map(({ base, rates, date }) => {
           const currencies = [];
           const ratesArr = Object.entries(rates).map((res, index) => {
             currencies.push(res[0]);
             return {id: index + 1, currency: res[0], value: res[1]};
           });
 
-          return { base, ratesArr, date, currencies }
+          return { base, ratesArr, date, currencies };
         }),
       )
       .subscribe(({ base, ratesArr, date, currencies}) => {
@@ -47,18 +60,21 @@ export class ExchangeComponent implements OnInit, OnDestroy {
         this.base = base;
         this.date = date;
         this.currencies = currencies;
-      });
+      }, error => this.loader = false, () => this.loader = false);
   }
 
   convert(): void {
-    const currency1 = this.currencyFrom.value;
-    const currency2 = this.currencyTo.value;
+    const inputValue = this.inputControl.value;
+    const targetCurrency = this.currencyTo.value;
+    const targetRate = this.dataSource.find(val => val.currency === targetCurrency);
 
-    console.log(currency1);
-    console.log(currency2);
+    !inputValue && this.inputControl.markAsTouched();
+
+    this.exchangeValue = inputValue * targetRate.value;
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

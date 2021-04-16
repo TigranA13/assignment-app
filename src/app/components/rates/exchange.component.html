@@ -1,10 +1,44 @@
-
-<div class="grid">
+<app-loader *ngIf="loader"></app-loader>
+<div class="mainWrapper">
+  <div class="exchangeWrapper">
+    <div class="exchangeSelect">
+      <mat-form-field class="values">
+        <input
+          matInput
+          placeholder="Enter amount"
+          [formControl]="inputControl"
+        >
+        <mat-error *ngIf="inputControl.hasError('pattern') && !inputControl.hasError('required')">
+          Only number characters allowed
+        </mat-error>
+        <mat-error *ngIf="inputControl.hasError('required') && !inputControl.hasError('pattern')">
+          Field is required
+        </mat-error>
+      </mat-form-field>
+      <span class="inputCurrency">{{currencyFrom}}</span>
+    </div>
+    <div class="exchangeBtn">
+      <button mat-mini-fab title="Convert" (click)="convert()">
+        <mat-icon>change_circle</mat-icon>
+      </button>
+    </div>
+    <div class="exchangeSelect">
+      <span class="values exchangeValueInput">{{exchangeValue | number:'0.2-4'}}</span>
+      <mat-form-field>
+        <mat-select [formControl]="currencyTo">
+          <mat-select-trigger>
+            {{currencyTo.value}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
   <div class="ratesWrapper">
     <div class="contentHeader">
      <span>Rates</span>
+      <span>Update Date: {{date}}</span>
     </div>
-
     <div class="example-container mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
 
@@ -32,40 +66,6 @@
       <div class="noData" *ngIf="!dataSource.length">
         No Data
       </div>
-    </div>
-  </div>
-  <div class="exchangeWrapper">
-    <div class="exchangeSelect">
-      <mat-form-field>
-        <mat-label>From</mat-label>
-        <mat-select [formControl]="currencyFrom">
-          <mat-select-trigger>
-            {{currencyFrom.value}}
-          </mat-select-trigger>
-          <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-mini-fab (click)="convert()">
-        <mat-icon>change_circle</mat-icon>
-      </button>
-      <mat-form-field>
-        <mat-label>To</mat-label>
-        <mat-select [formControl]="currencyTo">
-          <mat-select-trigger>
-            {{currencyTo.value}}
-          </mat-select-trigger>
-          <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="info">
-        <mat-form-field class="example-full-width values">
-          <input matInput placeholder="Enter amount" [formControl]="inputControl">
-        </mat-form-field>
-        <span class="inputCurrency">{{currencyFrom.value}}</span>
-        <div class="divider"></div>
-        <span class="values justifyToEnd">1000</span>
-      <span class="inputCurrency">{{currencyTo.value}}</span>
     </div>
   </div>
 </div>
