@@ -31,8 +31,9 @@ export class ExchangeComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(private ratesService: RatesService) {
+    // Listen currency selector changes in order to update conversion data
     this.subscription = this.currencyTo.valueChanges
-      .subscribe(val => {
+      .subscribe(() => {
         this.exchangeValue = 0;
       });
   }
@@ -41,10 +42,12 @@ export class ExchangeComponent implements OnInit, OnDestroy {
     this.getCurrencies();
   }
 
+  // get rates data from service and transforming
   getCurrencies(): void {
     this.loader = true;
     this.ratesService.getRates()
       .pipe(
+        // transform data end return necessary data
         map(({ base, rates, date }) => {
           const currencies = [];
           const ratesArr = Object.entries(rates).map((res, index) => {
@@ -63,6 +66,7 @@ export class ExchangeComponent implements OnInit, OnDestroy {
       }, error => this.loader = false, () => this.loader = false);
   }
 
+  // Converting input amount to selected currency
   convert(): void {
     const inputValue = this.inputControl.value;
     const targetCurrency = this.currencyTo.value;

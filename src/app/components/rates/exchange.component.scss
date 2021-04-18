@@ -57,39 +57,81 @@
     }
 
   }
-  .ratesWrapper {
-    .contentHeader {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      padding: 10px 0;
-      margin: 0 auto;
-      span {
-        font-size: 20px;
-      }
+}
+
+@media only screen and (max-width: 600px) {
+  .mainWrapper {
+    grid-template-columns: auto;
+    grid-auto-rows: auto auto;
+    .exchangeWrapper {
+      width: 290px;
+      font-size: 16px;
     }
-    .example-container {
-      width: 100%;
-      height: 400px;
-      overflow: auto;
-      margin: 0 auto;
-    }
-    table {
-      width: 100%;
-      th {
-        font-size: 18px;
-        color: #fea832;
-        background-color: #3f3f3f;
-      }
-      td {
+    .exchangeSelect {
+      .values, .inputCurrency {
         font-size: 16px;
       }
+      .exchangeValueInput {
+        height: 23px;
+      }
     }
-    .noData {
-      font-size: 20px;
-      text-align: center;
-      padding: 50px;
-    }
+  }
+  .ratesWrapper {
+    width: 290px;
+    margin: 0 auto;
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .mainWrapper {
+    grid-column-gap: 20px;
+    .exchangeWrapper {
+      width: 330px;
+    }
+    .exchangeSelect {
+      font-size: 16px;
+      .values, .inputCurrency {
+        font-size: 16px;
+      }
+      .exchangeValueInput {
+        height: 29px;
+      }
+    }
+  }
+  .ratesWrapper {
+    width: 330px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .mainWrapper {
+    .exchangeWrapper {
+      width: 500px;
+    }
+  }
+  .ratesWrapper {
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .mainWrapper {
+    grid-template-columns: auto 500px;
+    grid-column-gap: 50px;
+    .exchangeWrapper {
+      width: 555px;
+    }
+    .exchangeSelect {
+      font-size: 18px;
+      .values, .inputCurrency {
+        font-size: 18px;
+      }
+      .exchangeValueInput {
+        height: 29px;
+      }
+    }
+  }
+  .ratesWrapper {
+    width: 400px;
+  }
+}

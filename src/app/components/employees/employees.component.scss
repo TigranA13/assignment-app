@@ -1,0 +1,25 @@
+.mainWrapper {
+  .mapView {
+    margin-top: 20px;
+    #employees_map {
+      height: 400px;
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  table {
+    th {
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  table {
+    th {
+      font-size: 18px;
+    }
+  }
+}
