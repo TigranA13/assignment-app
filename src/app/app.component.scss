@@ -1,0 +1,23 @@
+.example-container {
+  height: calc(100vh - 64px);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  width: 300px;
+  button {
+    width: 100%;
+    height: 50px;
+  }
+}
+
+.active {
+  background-color: #cecece;
+  pointer-events: none;
+}

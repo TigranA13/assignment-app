@@ -1,0 +1,72 @@
+<app-loader *ngIf="loader"></app-loader>
+<div class="mainWrapper">
+  <div class="exchangeWrapper">
+    <div class="exchangeSelect">
+      <mat-form-field class="values">
+        <input
+          matInput
+          placeholder="Enter amount"
+          [formControl]="inputControl"
+        >
+        <mat-error *ngIf="inputControl.hasError('pattern') && !inputControl.hasError('required')">
+          Only number characters allowed
+        </mat-error>
+        <mat-error *ngIf="inputControl.hasError('required') && !inputControl.hasError('pattern')">
+          Field is required
+        </mat-error>
+      </mat-form-field>
+      <span class="inputCurrency">{{currencyFrom}}</span>
+    </div>
+    <div class="exchangeBtn">
+      <button mat-mini-fab title="Convert" (click)="convert()">
+        <mat-icon>change_circle</mat-icon>
+      </button>
+    </div>
+    <div class="exchangeSelect">
+      <span class="values exchangeValueInput">{{exchangeValue | number:'0.2-4'}}</span>
+      <mat-form-field>
+        <mat-select [formControl]="currencyTo">
+          <mat-select-trigger>
+            {{currencyTo.value}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="ratesWrapper">
+    <div class="contentHeader">
+     <span>Rates</span>
+      <span>Update Date: {{date}}</span>
+    </div>
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- # Column -->
+        <ng-container matColumnDef="#">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}}. </td>
+        </ng-container>
+
+        <!-- Currency Column -->
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef> Currency </th>
+          <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+        </ng-container>
+
+        <!-- Rate Column -->
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef> Rate </th>
+          <td mat-cell *matCellDef="let element"> {{element.value | number:'0.2-4'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <div class="noData" *ngIf="!dataSource?.length">
+        No Data
+      </div>
+    </div>
+  </div>
+</div>
+

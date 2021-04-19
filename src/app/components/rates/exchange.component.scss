@@ -1,0 +1,137 @@
+.mainWrapper {
+  display: grid;
+  grid-template-columns: auto 500px;
+  grid-column-gap: 50px;
+  .exchangeWrapper {
+    width: 100%;
+    font-size: 22px;
+    margin: 45px auto;
+  }
+  .exchangeBtn {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    button {
+      width: 60px;
+      height: 60px;
+      margin: 0 20px;
+      background-color: #fea832;
+      .mat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+        line-height: 0.75;
+        color: #3f3f3f;
+      }
+    }
+  }
+  .exchangeSelect {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1.5px solid #3f3f3f;
+    border-radius: 4px;
+    padding: 20px;
+    .mat-form-field {
+      width: 90px;
+    }
+    .values {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 70%;
+      font-size: 22px;
+      margin-right: 20px;
+      ::ng-deep .mat-form-field-wrapper {
+        width: 85%;
+      }
+    }
+    .inputCurrency {
+      font-size: 22px;
+      line-height: 2.5;
+    }
+    .exchangeValueInput {
+      height: 40px;
+      border-bottom: 1px solid #919191;
+      width: 400px;
+    }
+
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mainWrapper {
+    grid-template-columns: auto;
+    grid-auto-rows: auto auto;
+    .exchangeWrapper {
+      width: 290px;
+      font-size: 16px;
+    }
+    .exchangeSelect {
+      .values, .inputCurrency {
+        font-size: 16px;
+      }
+      .exchangeValueInput {
+        height: 23px;
+      }
+    }
+  }
+  .ratesWrapper {
+    width: 290px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mainWrapper {
+    grid-column-gap: 20px;
+    .exchangeWrapper {
+      width: 330px;
+    }
+    .exchangeSelect {
+      font-size: 16px;
+      .values, .inputCurrency {
+        font-size: 16px;
+      }
+      .exchangeValueInput {
+        height: 29px;
+      }
+    }
+  }
+  .ratesWrapper {
+    width: 330px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .mainWrapper {
+    .exchangeWrapper {
+      width: 500px;
+    }
+  }
+  .ratesWrapper {
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .mainWrapper {
+    grid-template-columns: auto 500px;
+    grid-column-gap: 50px;
+    .exchangeWrapper {
+      width: 555px;
+    }
+    .exchangeSelect {
+      font-size: 18px;
+      .values, .inputCurrency {
+        font-size: 18px;
+      }
+      .exchangeValueInput {
+        height: 29px;
+      }
+    }
+  }
+  .ratesWrapper {
+    width: 400px;
+  }
+}

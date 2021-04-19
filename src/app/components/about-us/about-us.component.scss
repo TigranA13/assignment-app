@@ -1,0 +1,18 @@
+.contentHeader {
+  justify-content: center;
+}
+
+.example-card {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #3f3f3f;
+  color: #fea832;
+  .mat-card-subtitle {
+    color: #cecece;
+  }
+}
+
+.example-header-image {
+  background-image: url('/assets/images/coin.png');
+  background-size: cover;
+}

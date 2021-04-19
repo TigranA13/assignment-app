@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+.container-fluid
+  width: 70%
+  margin: 0 auto
+  padding: 50px 0 100px
+
+.contentHeader
+  display: flex
+  justify-content: space-between
+  width: 100%
+  padding: 10px 0
+  margin: 0 auto
+  span
+    font-size: 24px
+    font-weight: 500
+
+.example-container
+  width: 100%
+  height: 400px
+  overflow: auto
+  margin: 0 auto
+  table
+    width: 100%
+    th
+      font-size: 18px
+      color: #fea832
+      background-color: #3f3f3f
+    td
+      font-size: 16px
+
+  .noData
+    font-size: 20px
+    text-align: center
+    padding: 50px
+
+@media only screen and (max-width: 600px)
+  .container-fluid
+    width: 90%
+    padding: 20px 0 50px
+  .contentHeader
+    span
+      font-size: 16px
+
+
+@media only screen and (max-width: 1200px)
+  .container-fluid
+    width: 90%
+    padding: 50px 0 80px
+  .contentHeader
+    span
+      font-size: 18px

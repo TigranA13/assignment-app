@@ -1,0 +1,60 @@
+<app-loader *ngIf="loader"></app-loader>
+<div class ="mainWrapper">
+  <div class="employeesList">
+    <div class="contentHeader">
+      <span>List Of Employees</span>
+    </div>
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- # Image -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <img src="{{element.thumbnail}}" alt="employee image">
+          </td>
+        </ng-container>
+
+        <!-- fullName -->
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef> Full Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+        </ng-container>
+
+        <!-- Currency Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.location.street.number}}
+            {{element.location.street.name}},
+            {{element.location.city}},
+            {{element.location.state}},
+            {{element.location.country}},
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <div class="noData" *ngIf="!dataSource?.length">
+        No Data
+      </div>
+    </div>
+  </div>
+  <div class="mapView">
+    <div id="employees_map"></div>
+    <div id="popup"></div>
+  </div>
+</div>
