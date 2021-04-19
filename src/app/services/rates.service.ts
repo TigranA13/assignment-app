@@ -16,6 +16,6 @@ export class RatesService {
     const params = new HttpParams()
       .set('access_key', environment.apiKey);
 
-    return this.http.get('http://api.exchangeratesapi.io/v1/latestqqqwe', { params });
+    return this.http.get('http://api.exchangeratesapi.io/v1/latest', { params });
   }
 }
