@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -15,6 +15,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
   constructor() {}
 
+  // handle requests errors
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request)
       .pipe(
@@ -28,6 +29,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           } else {
             errMessage = `Error Code: ${err.status}\nMessage: ${err.message}`;
           }
+          console.log(`%c ${errMessage}`, 'background: #e21d1d; color: #000; padding: 10px; font-size: 16px');
           return throwError(errMessage);
         })
       );

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'rates', loadChildren: () => import('./components/rates/exchange.module').then(m => m.ExchangeModule) },
   { path: 'employees', loadChildren: () => import('./components/employees/employees.module').then(m => m.EmployeesModule) },
   { path: 'about-us', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule) },
-  { path: '**', redirectTo: '/home' }
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
